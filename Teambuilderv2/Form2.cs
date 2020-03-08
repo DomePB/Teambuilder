@@ -28,71 +28,12 @@ namespace Teambuilderv2
 
         private void Roll(String[] p)
         {
+            Matchmaking matchmaking = new Matchmaking();
 
-            String[] pauserollen = new String[10]; // NICHT SICHER OB HIER 10 musss aber bei 9 chrashed wenn 9 gerollt wird?????
-
-            for (int swap = 0; swap < pauserollen.Length; swap++)
-            {
-
-                pauserollen[swap] = p[swap];
-
-                Console.WriteLine("pausenrollen:" + pauserollen[swap] + "p array:" + p[swap]);
-
-            }
-
-            for (int i = 0; i < p.Length; i++)
-            {
-
-                Console.WriteLine("for i zählen " + i);
-
-                Random random = new Random();
-
-                int m = GetRandom();
-
-                Console.WriteLine("m before if" + m);
-
-                if (String.Compare(pauserollen[m], p[0]) != 0 && pauserollen[m] != null)
-                {
-
-                    p[i] = pauserollen[m];
-                    pauserollen[m] = null;
-
-                    Console.WriteLine("pausenrollen war nicht leer + nicht das selbe");
-                }
-                else
-                {
-                    Console.WriteLine("Es war dasselbe why ever oder pausenrollen war leer");
-                    int x = GetRandom(); // Darf nicht die selbe sein deshalb nächste while
-
-
-
-                    while (x.CompareTo(m) == 0 || pauserollen[x] == null)
-                    {
-                        x = GetRandom();
-
-                        Console.WriteLine("x" + x);
-                    }
-
-                    p[i] = pauserollen[x];
-                    pauserollen[x] = null;
-
-                }
-
-
-
-            }
-
-            
-
-            for (int forx = 0; forx < p.Length; forx++)
-            {
-
-                Console.WriteLine(p[forx]);
-
-            }
+            String[] teams = matchmaking.matchmake(p);
 
             Form1 Form1 = new Form1();
-            Form1.AusfüllendergerolltenNamen(p);
+            Form1.AusfüllendergerolltenNamen(teams);
             Form1.Show();
             this.Close();
         }
@@ -108,9 +49,14 @@ namespace Teambuilderv2
 
             textBox1.Text = "DomePB";
             textBox2.Text = "Bitse";
-            textBox3.Text = "Paulkemper24";
-            textBox4.Text = "Flappy the bird";
-            textBox5.Text = "Phoenixbluez";
+            textBox3.Text = "paulkemper24";
+            textBox4.Text = "flappy the bird";
+            textBox5.Text = "PhoenixblueLp";
+            textBox6.Text = "KingMashallah";
+            textBox7.Text = "ItsArtMom";
+            textBox8.Text = "havethephlow";
+            textBox9.Text = "xGuts";
+            textBox10.Text = "TeufelMuffin";
 
         }
     }

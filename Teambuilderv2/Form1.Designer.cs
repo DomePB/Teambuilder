@@ -59,7 +59,7 @@
             this.search1 = new System.Windows.Forms.TextBox();
             this.searchbutton = new System.Windows.Forms.Button();
             this.send = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -277,11 +277,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(947, 100);
+            this.button2.Location = new System.Drawing.Point(841, 304);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 24;
-            this.button2.Text = "button2";
+            this.button2.Text = "Ausgabe";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -345,15 +345,16 @@
             this.send.UseVisualStyleBackColor = true;
             this.send.Click += new System.EventHandler(this.send_Click);
             // 
-            // button5
+            // button6
             // 
-            this.button5.Location = new System.Drawing.Point(976, 370);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 32;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(937, 72);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(184, 34);
+            this.button6.TabIndex = 33;
+            this.button6.Text = "ReRoll";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
@@ -361,7 +362,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1163, 405);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.send);
             this.Controls.Add(this.searchbutton);
             this.Controls.Add(this.search1);
@@ -434,7 +435,7 @@
         private System.Windows.Forms.TextBox search1;
         private System.Windows.Forms.Button searchbutton;
         private System.Windows.Forms.Button send;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
