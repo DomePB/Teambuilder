@@ -1,0 +1,11 @@
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.csprojAssemblyReference.cache
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.Form1.resources
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.Properties.Resources.resources
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.GenerateResource.cache
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Teambuilderv2.exe.config
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Teambuilderv2.exe
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Teambuilderv2.pdb
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.exe
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.pdb
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Database1.mdf
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Database1_log.ldf
