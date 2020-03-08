@@ -92,6 +92,7 @@ namespace Teambuilderv2
             dataGridView1.DataSource = test;
         }
 
+        //Team1 Win Button
         private void button3_Click(object sender, EventArgs e)
         {
             
@@ -132,6 +133,9 @@ namespace Teambuilderv2
                 }
             }
 
+            SqlCommand match = new SqlCommand($"INSERT INTO Matchhistory(Team1Top,Team1jungle,Team1Mid,Team1Adc,Team1Support,Team2Top,Team2Jungle,Team2Mid,Team2Adc,Team2Support,TeamWin) VALUES('{team1[0]}','{team1[1]}','{team1[2]}','{team1[3]}','{team1[4]}','{team2[0]}','{team2[1]}','{team2[2]}','{team2[3]}','{team2[4]}','Team1Win')", dbc.cnn);
+            match.ExecuteNonQuery();
+   
             SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Players", dbc.cnn);
             DataTable test = new DataTable();
             testad.Fill(test);
@@ -139,6 +143,7 @@ namespace Teambuilderv2
             dbc.close();
         }
 
+        // Team2Win button
         private void button4_Click(object sender, EventArgs e)
         {
 
@@ -178,6 +183,9 @@ namespace Teambuilderv2
                     filltest.ExecuteNonQuery();
                 }
             }
+
+            SqlCommand match = new SqlCommand($"INSERT INTO Matchhistory(Team1Top,Team1jungle,Team1Mid,Team1Adc,Team1Support,Team2Top,Team2Jungle,Team2Mid,Team2Adc,Team2Support,TeamWin) VALUES('{team1[0]}','{team1[1]}','{team1[2]}','{team1[3]}','{team1[4]}','{team2[0]}','{team2[1]}','{team2[2]}','{team2[3]}','{team2[4]}','Team2Win')", dbc.cnn);
+            match.ExecuteNonQuery();
 
             SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Players", dbc.cnn);
             DataTable test = new DataTable();
@@ -254,6 +262,19 @@ namespace Teambuilderv2
 
             String[] teams = matchmaking.matchmake(playernames);
             AusfüllendergerolltenNamen(teams);
+        }
+
+        // Matchhistory anzeigen
+        private void button5_Click(object sender, EventArgs e)
+        {
+            dbc.connection();
+          
+            SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Matchhistory", dbc.cnn);
+            DataTable test = new DataTable();
+            testad.Fill(test);
+            dataGridView1.DataSource = test;
+            dbc.close();
+
         }
 
         /*  private void button5_Click(object sender, EventArgs e)
