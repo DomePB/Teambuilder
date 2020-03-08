@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Teambuilderv2
 {
     class Matchmaking
     {
+        Databaseconnection dbc = new Databaseconnection();
 
         class Player
         {
             public String name;
             public double rating;
-
+            
             public Player(String name, double rating)
             {
                 this.name = name;
@@ -47,15 +49,26 @@ namespace Teambuilderv2
 
         public double rank(String playerName)
         {
+            try
+            {
+                dbc.connection();
+                SqlCommand wr = new SqlCommand("SELECT TotalWins,TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
+                wr.Parameters.Add("@summonername",playerName);
+                double winrate = (double)wr.ExecuteScalar();
+                Summoner_V4 summoner = new Summoner_V4();
+                string id = summoner.GetSummonerByName(playerName).Id;
 
-            Summoner_V4 summoner = new Summoner_V4();
-            string id = summoner.GetSummonerByName(playerName).Id;
-
-            League_V4 league = new League_V4();
-            string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
-            string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
-
-            return (Array.IndexOf(tiers, tier) - 3) * 0.25 + 3 + (4 - romanToDecimal(rank)) * 0.125 + promotionBias(tier);
+                League_V4 league = new League_V4();
+                string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
+                string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
+                dbc.close();
+                return (Array.IndexOf(tiers, tier) - 3) * 0.25 + 3 + (4 - romanToDecimal(rank)) * 0.125 + promotionBias(tier);
+            }
+            catch
+            {
+                Console.WriteLine("FEHLER BRUDI");
+            }
+            return 3.0;
         }
 
         private double getAverageRating(List<Player> players)
