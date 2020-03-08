@@ -222,6 +222,21 @@ namespace Teambuilderv2
             }
             catch (Exception) { /*TODO: Any exception handling.*/ }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Summoner_V4 summoner = new Summoner_V4();
+            long x = summoner.GetSummonerByName("ItsArtMom").SummonerLevel;
+            string id = summoner.GetSummonerByName("ItsArtMom").Id;
+           // MessageBox.Show("lvl:"+x);
+
+            League_V4 league = new League_V4();
+            string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
+            string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
+            int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
+
+            MessageBox.Show("lvl: " + x +" tier: "+ tier + rank+" lp: "+lp);
+        }
     }
     
 }

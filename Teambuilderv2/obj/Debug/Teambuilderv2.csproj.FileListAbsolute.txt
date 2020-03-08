@@ -9,3 +9,8 @@ F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.e
 F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.pdb
 F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Database1.mdf
 F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Database1_log.ldf
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Newtonsoft.Json.dll
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\System.Net.Http.Formatting.dll
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\Newtonsoft.Json.xml
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\bin\Debug\System.Net.Http.Formatting.xml
+F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.CopyComplete
