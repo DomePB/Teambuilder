@@ -92,6 +92,7 @@
     <Compile Include="MiniSeriesDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rank.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner.cs" />
     <Compile Include="Summoner_V4.cs" />

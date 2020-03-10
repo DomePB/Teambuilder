@@ -9,7 +9,7 @@ namespace Teambuilderv2
 {
     static class Program
     {
-        
+        public static Dictionary<String, Rank> playerCache = new Dictionary<String, Rank>();
 
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.

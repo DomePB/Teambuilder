@@ -15,6 +15,7 @@ namespace Teambuilderv2
     {
         // string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =F:\Teambuilder\Teambuilderv2\Database1.mdf; Integrated Security = True"; //F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\Database1.mdf
         // SqlConnection cnn;
+       
         Databaseconnection dbc = new Databaseconnection();
         String[] team1 = new String[5];
         String[] team2 = new String[5];
@@ -39,10 +40,6 @@ namespace Teambuilderv2
         {
           
             Console.WriteLine("aufüllenwirdausgeführt");
-            for (int forx = 0; forx < ausfüllen.Length; forx++)
-            {
-                Console.WriteLine(ausfüllen[forx]);
-            }
             Ausgabe1.Text = Convert.ToString(ausfüllen[0]);
             Ausgabe2.Text = Convert.ToString(ausfüllen[1]);
             Ausgabe3.Text = Convert.ToString(ausfüllen[2]);

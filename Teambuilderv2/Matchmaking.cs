@@ -10,6 +10,7 @@ namespace Teambuilderv2
     class Matchmaking
     {
         Databaseconnection dbc = new Databaseconnection();
+      //  Dictionary<String, Rank> playerCache;
 
         class Player
         {
@@ -22,6 +23,8 @@ namespace Teambuilderv2
                 this.rating = rating;
             }
         }
+
+   
 
         private double promotionBias(String tier)
         {
@@ -47,15 +50,10 @@ namespace Teambuilderv2
 
         private String[] tiers = { "IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "DIAMOND", "MASTER", "GRANDMASTER", "CHALLENGER" };
 
-        public double rank(String playerName)
+        private Rank getRank(String playerName)
         {
             try
             {
-                dbc.connection();
-                SqlCommand wr = new SqlCommand("SELECT TotalWins,TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
-                wr.Parameters.Add("@summonername",playerName);
-                //  double winrate = (double)wr.ExecuteScalar();
-                Console.WriteLine("");
                 Summoner_V4 summoner = new Summoner_V4();
                 string id = summoner.GetSummonerByName(playerName).Id;
 
@@ -63,19 +61,65 @@ namespace Teambuilderv2
                 string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
                 string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
                 int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
-               int leaguepoints = lp + 400 * Array.IndexOf(tiers, tier)+(romanToDecimal(rank)-1)*100;
-                Console.WriteLine(leaguepoints);
-                dbc.close();
-                 return leaguepoints;
-                 
-                // return (Array.IndexOf(tiers, tier) - 3) * 0.25 + 3 + (4 - romanToDecimal(rank)) * 0.125 + promotionBias(tier);
-               
+                return new Rank(lp, rank, tier);
             }
             catch
             {
-                Console.WriteLine("FEHLER BRUDI");
+                return new Rank(0, "GOLD", "IV");
             }
-            return 3.0;
+               
+            
+           
+            
+        }
+        private double getwinrate(String playerName)
+        {
+            try
+            {
+                dbc.connection();
+                SqlCommand wins = new SqlCommand("SELECT TotalWins FROM Players WHERE PlayerName=@summonername", dbc.cnn);
+                wins.Parameters.Add("@summonername", playerName);
+                Int32 Anzahlwins = (Int32)wins.ExecuteScalar();
+                SqlCommand looses = new SqlCommand("SELECT TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
+                looses.Parameters.Add("@summonername", playerName);
+                Int32 Anzahllooses = (Int32)looses.ExecuteScalar();
+                double winrate =  (double)Anzahlwins/ ((double)Anzahlwins + (double)Anzahllooses);
+                dbc.close();
+               
+                return Math.Asin(2 * winrate - 1) * 1 / (1 + Math.Exp(3 - (Anzahlwins + Anzahllooses)));
+            }
+            catch {
+                return 0.0;
+            }
+           
+        }
+
+        public double rank(String playerName)
+        {
+          
+                Rank playerRank;
+         
+
+            if (Program.playerCache.ContainsKey(playerName)) 
+                {
+                    playerRank = Program.playerCache[playerName];
+                  
+                }
+                else
+                {
+                    playerRank = getRank(playerName);
+                    Program.playerCache.Add(playerName, playerRank);
+                }
+
+                dbc.close();
+
+            double ranking = playerRank.lp + 400 * Array.IndexOf(tiers, playerRank.tier) + (4-romanToDecimal(playerRank.rank)) * 100 + 1000 * getwinrate(playerName);
+            Console.WriteLine(playerName+" "+ ranking);
+
+                return playerRank.lp + 400 * Array.IndexOf(tiers, playerRank.tier) + (4-romanToDecimal(playerRank.rank)) * 100 + 1000 * getwinrate(playerName);
+
+            
+          
         }
 
         private double getAverageRating(List<Player> players)
@@ -125,7 +169,35 @@ namespace Teambuilderv2
 
             double totalAverage = getAverageRating(players);
 
-            int firstIndex = new Random().Next(10);
+            Player best = new Player("ERROR", 0.0);
+            Player secondBest = new Player("ERROR",0.0);
+
+            foreach (Player player in players)
+            {
+                
+                if (player.rating > best.rating)
+                {
+                    best = player;
+                }
+                else if (player.rating > secondBest.rating)
+                {
+                    secondBest = player;
+                }
+            }
+
+            int firstIndex;
+            if (best.rating - secondBest.rating > 500)
+            {
+
+                firstIndex = players.IndexOf(best);
+                Console.WriteLine("ayayayayayay");
+            }
+            else
+            {
+                firstIndex = new Random().Next(10);
+            }
+
+
             Player first = players[firstIndex];
             players.RemoveAt(firstIndex);
             team1.Add(first);
@@ -136,7 +208,8 @@ namespace Teambuilderv2
             players.RemoveAt(secondIndex);
             team2.Add(second);
             team2Average = second.rating;
-            
+
+
             for (int i = 2; i < 10; i++)
             {
                 if (i % 2 == 0)
@@ -156,6 +229,11 @@ namespace Teambuilderv2
                 }
 
             }
+            Random rng = new Random();
+
+            team1 = team1.OrderBy(a => rng.Next()).ToList(); 
+
+            team2 = team2.OrderBy(a => rng.Next()).ToList();
 
             team1.AddRange(team2);
 
@@ -166,6 +244,8 @@ namespace Teambuilderv2
                 playerNames[i] = team1[i].name;
             }
 
+            Console.WriteLine("team1av: "+team1Average);
+            Console.WriteLine("team2av: "+team2Average);
             return playerNames;
         }
     }
