@@ -54,7 +54,8 @@ namespace Teambuilderv2
                 dbc.connection();
                 SqlCommand wr = new SqlCommand("SELECT TotalWins,TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
                 wr.Parameters.Add("@summonername",playerName);
-            //    double winrate = (double)wr.ExecuteScalar();
+                //  double winrate = (double)wr.ExecuteScalar();
+                Console.WriteLine("");
                 Summoner_V4 summoner = new Summoner_V4();
                 string id = summoner.GetSummonerByName(playerName).Id;
 
