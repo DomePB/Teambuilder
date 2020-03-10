@@ -28,7 +28,7 @@ namespace Teambuilderv2
             return 0;
         }
 
-        private double romanToDecimal(String numeral)
+        private int romanToDecimal(String numeral)
         {
             switch (numeral)
             {
@@ -54,15 +54,21 @@ namespace Teambuilderv2
                 dbc.connection();
                 SqlCommand wr = new SqlCommand("SELECT TotalWins,TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
                 wr.Parameters.Add("@summonername",playerName);
-                double winrate = (double)wr.ExecuteScalar();
+            //    double winrate = (double)wr.ExecuteScalar();
                 Summoner_V4 summoner = new Summoner_V4();
                 string id = summoner.GetSummonerByName(playerName).Id;
 
                 League_V4 league = new League_V4();
                 string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
                 string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
+                int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
+               int leaguepoints = lp + 400 * Array.IndexOf(tiers, tier)+(romanToDecimal(rank)-1)*100;
+                Console.WriteLine(leaguepoints);
                 dbc.close();
-                return (Array.IndexOf(tiers, tier) - 3) * 0.25 + 3 + (4 - romanToDecimal(rank)) * 0.125 + promotionBias(tier);
+                 return leaguepoints;
+                 
+                // return (Array.IndexOf(tiers, tier) - 3) * 0.25 + 3 + (4 - romanToDecimal(rank)) * 0.125 + promotionBias(tier);
+               
             }
             catch
             {

@@ -17,7 +17,7 @@ namespace Teambuilderv2
         public RiotApi()
         {
             Region = "euw1";
-            Key = "RGAPI-95730bb2-f6e7-41a4-9bcb-74a93f6ee5e6";
+            Key = "RGAPI-ec2c4e71-0411-4f89-ab88-30e815695e8b";
         }
         protected HttpResponseMessage GET(string URL) 
         { 
