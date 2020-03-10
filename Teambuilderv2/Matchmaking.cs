@@ -10,6 +10,7 @@ namespace Teambuilderv2
     class Matchmaking
     {
         Databaseconnection dbc = new Databaseconnection();
+        Dictionary<String, Rank> playerCache;
 
         class Player
         {
@@ -20,6 +21,20 @@ namespace Teambuilderv2
             {
                 this.name = name;
                 this.rating = rating;
+            }
+        }
+
+        class Rank
+        {
+            public int lp;
+            public string rank;
+            public string tier;
+
+            public Rank(int lp, string rank, string tier)
+            {
+                this.lp = lp;
+                this.rank = rank;
+                this.tier = tier;
             }
         }
 
@@ -45,35 +60,54 @@ namespace Teambuilderv2
             }
         }
 
+        private Rank getRank(String playerName)
+        {
+            Summoner_V4 summoner = new Summoner_V4();
+            string id = summoner.GetSummonerByName(playerName).Id;
+
+            League_V4 league = new League_V4();
+            string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
+            string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
+            int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
+
+            return new Rank(lp, rank, tier);
+        }
+
         private String[] tiers = { "IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "DIAMOND", "MASTER", "GRANDMASTER", "CHALLENGER" };
 
         public double rank(String playerName)
         {
+
             try
             {
                 dbc.connection();
                 SqlCommand wr = new SqlCommand("SELECT TotalWins,TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
                 wr.Parameters.Add("@summonername",playerName);
-            //    double winrate = (double)wr.ExecuteScalar();
-                Summoner_V4 summoner = new Summoner_V4();
-                string id = summoner.GetSummonerByName(playerName).Id;
+                double winrate = (double)wr.ExecuteScalar();
 
-                League_V4 league = new League_V4();
-                string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
-                string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
-                int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
-               int leaguepoints = lp + 400 * Array.IndexOf(tiers, tier)+(romanToDecimal(rank)-1)*100;
-                Console.WriteLine(leaguepoints);
+                Rank playerRank;
+
+                if (playerCache.ContainsKey(playerName))
+                {
+                    playerRank = playerCache[playerName];
+                } else
+                {
+                    playerRank = getRank(playerName);
+                    playerCache[playerName] = playerRank;
+                }
+
                 dbc.close();
-                 return leaguepoints;
-                 
+
+                return playerRank.lp + 400 * Array.IndexOf(tiers, playerRank.tier) + (romanToDecimal(playerRank.rank) - 1) * 100;
+
                 // return (Array.IndexOf(tiers, tier) - 3) * 0.25 + 3 + (4 - romanToDecimal(rank)) * 0.125 + promotionBias(tier);
-               
+
             }
             catch
             {
                 Console.WriteLine("FEHLER BRUDI");
             }
+
             return 3.0;
         }
 
