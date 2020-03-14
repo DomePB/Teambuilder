@@ -4,17 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Teambuilderv2
 {
     class Databaseconnection
     {
         public SqlConnection cnn;
-        private string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =F:\Teambuilder\Teambuilderv2\Database1.mdf; Integrated Security = True"; //F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\Database1.mdf
 
+
+        private string connectionString; //=  @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =F:\Teambuilder\Teambuilderv2\Database1.mdf; Integrated Security = True"; //F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\Database1.mdf
+      
         public void connection()
         {
-
+            string fullpath = Path.GetFullPath("Database1.mdf");
+            connectionString = $@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename ={fullpath}; Integrated Security = True";
+            Console.WriteLine(fullpath);
+          
             cnn = new SqlConnection(connectionString);
             try
             {
