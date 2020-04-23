@@ -46,3 +46,4 @@ F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.GenerateResource.cac
 F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.CopyComplete
 F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.exe
 F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.pdb
+F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.UserControl1.resources

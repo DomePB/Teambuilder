@@ -28,6 +28,8 @@ namespace Teambuilderv2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            
            
         }
         private void Button1_Click(object sender, EventArgs e)
@@ -272,6 +274,28 @@ namespace Teambuilderv2
             dataGridView1.DataSource = test;
             dbc.close();
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+          
+            
+            bool visible = true;
+
+            if(visible)
+            {
+                
+                userControl11.Show();
+                userControl11.BringToFront();
+                userControl11.Loadcontrol();
+            }
+            else
+            {
+                userControl11.Hide();
+                visible = !visible;
+               
+            }
+            
         }
 
         /*  private void button5_Click(object sender, EventArgs e)
