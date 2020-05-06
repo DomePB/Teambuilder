@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Teambuilderv2
 {
@@ -19,6 +20,10 @@ namespace Teambuilderv2
         Databaseconnection dbc = new Databaseconnection();
         String[] team1 = new String[5];
         String[] team2 = new String[5];
+        String[] players = new String[10];
+        PictureBox[] pictureboxesarr = new PictureBox[10];
+        bool matchhistoryvis = true;
+        bool statsvis = true;
         public Form1()
         {
             InitializeComponent();
@@ -58,10 +63,12 @@ namespace Teambuilderv2
                 if (m < 5)
                 {
                     team1[m] = ausfüllen[m];
+                    players[m] = ausfüllen[m];
                 }
                 else 
                 {
                     team2[m - 5] = ausfüllen[m];
+                    players[m] = ausfüllen[m];
                 }
             }
         }
@@ -80,16 +87,7 @@ namespace Teambuilderv2
             }
         }*/
         //Ausgabe button der Datenbank
-        private void Button2_Click(object sender, EventArgs e)
-        {
-
-
-            dbc.connection();
-            SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Players", dbc.cnn);
-            DataTable test = new DataTable();
-            testad.Fill(test);
-            dataGridView1.DataSource = test;
-        }
+       
 
         //Team1 Win Button
         private void button3_Click(object sender, EventArgs e)
@@ -135,10 +133,7 @@ namespace Teambuilderv2
             SqlCommand match = new SqlCommand($"INSERT INTO Matchhistory(Team1Top,Team1jungle,Team1Mid,Team1Adc,Team1Support,Team2Top,Team2Jungle,Team2Mid,Team2Adc,Team2Support,TeamWin) VALUES('{team1[0]}','{team1[1]}','{team1[2]}','{team1[3]}','{team1[4]}','{team2[0]}','{team2[1]}','{team2[2]}','{team2[3]}','{team2[4]}','Team1Win')", dbc.cnn);
             match.ExecuteNonQuery();
    
-            SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Players", dbc.cnn);
-            DataTable test = new DataTable();
-            testad.Fill(test);
-            dataGridView1.DataSource = test;
+           
             dbc.close();
         }
 
@@ -186,27 +181,10 @@ namespace Teambuilderv2
             SqlCommand match = new SqlCommand($"INSERT INTO Matchhistory(Team1Top,Team1jungle,Team1Mid,Team1Adc,Team1Support,Team2Top,Team2Jungle,Team2Mid,Team2Adc,Team2Support,TeamWin) VALUES('{team1[0]}','{team1[1]}','{team1[2]}','{team1[3]}','{team1[4]}','{team2[0]}','{team2[1]}','{team2[2]}','{team2[3]}','{team2[4]}','Team2Win')", dbc.cnn);
             match.ExecuteNonQuery();
 
-            SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Players", dbc.cnn);
-            DataTable test = new DataTable();
-            testad.Fill(test);
-            dataGridView1.DataSource = test;
-            dbc.close();
-        }
-
-        private void searchbutton_Click(object sender, EventArgs e)
-        {
-
-            dbc.connection();
-            SqlDataAdapter playersearch = new SqlDataAdapter("SELECT* FROM Players WHERE Playername =@playername", dbc.cnn);
-            playersearch.SelectCommand.Parameters.Add("@playername", search1.Text);
-            // playersearch.SelectCommand.Parameters.Add("@playername",searchbutton.Text);
            
-            DataTable test = new DataTable();
-            playersearch.Fill(test);
-            dataGridView1.DataSource = test;
-
             dbc.close();
         }
+
 
         private void send_Click(object sender, EventArgs e)
         {
@@ -261,41 +239,144 @@ namespace Teambuilderv2
 
             String[] teams = matchmaking.matchmake(playernames);
             AusfüllendergerolltenNamen(teams);
+            Ausfüllenranks();
         }
 
         // Matchhistory anzeigen
-        private void button5_Click(object sender, EventArgs e)
-        {
-            dbc.connection();
-          
-            SqlDataAdapter testad = new SqlDataAdapter("SELECT* FROM Matchhistory", dbc.cnn);
-            DataTable test = new DataTable();
-            testad.Fill(test);
-            dataGridView1.DataSource = test;
-            dbc.close();
 
-        }
-
+        //Matchhistory
         private void button7_Click(object sender, EventArgs e)
         {
-          
-            
-            bool visible = true;
 
-            if(visible)
+            
+
+            if(matchhistoryvis)
             {
-                
+                matchhistoryvis = false;
                 userControl11.Show();
                 userControl11.BringToFront();
-                userControl11.Loadcontrol();
+                userControl11.LoadControl();
+                
+
             }
             else
             {
+               
+                matchhistoryvis = true;
                 userControl11.Hide();
-                visible = !visible;
+               if(!statsvis)
+                {
+                    userControl21.Hide();
+                    statsvis = true;
+                }
                
             }
             
+        }
+
+        // Stats
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (statsvis)
+            {
+                statsvis = false;
+                userControl21.Show();
+                userControl21.BringToFront();
+                userControl21.LoadControl();
+
+
+            }
+            else
+            {
+
+               statsvis = true;
+                userControl21.Hide();
+                if (!matchhistoryvis)
+                {
+                    userControl11.Hide();
+                    matchhistoryvis = true;
+                }
+
+            }
+        }
+
+        private void test_Click(object sender, EventArgs e)
+        {
+            Ausfüllenranks();
+           /*
+                LolClientApi lc = new LolClientApi();
+                Member[] result = lc.GetMembers();
+              MessageBox.Show(" "+result[0].summonerId);
+                Console.WriteLine(result[0].summonerId);
+                */
+            
+
+            
+        }
+
+        private double getrank(string playername)
+        {
+            Matchmaking m = new Matchmaking();
+            double rank = m.rank(playername);
+            
+            return rank;
+        }
+        
+        private string rankToFile(int i)
+        {
+            double rank = getrank(players[i]);
+            switch(rank)
+                {
+                case double n when n < 400:
+                    return Path.GetFullPath("iron.jpg");
+                case double n when 400<=n && n<800:
+                    return Path.GetFullPath("bronze.jpg");
+                case double n when 800<=n && n<1200:
+                    return Path.GetFullPath("silber.jpg");
+                case double n when 1200<=n && n<1600:
+                    return Path.GetFullPath("gold.jpg");
+                case double n when 1600 <= n && n < 2000:
+                    return Path.GetFullPath("platin.jpg");
+                case double n when 2000 <= n && n < 2400:
+                    Console.WriteLine(Path.GetFullPath("diamond.jpg"));
+                    return Path.GetFullPath("diamond.jpg");
+                case double n when 2400 <= n && n < 2800:
+                    return Path.GetFullPath("master.jpg");
+                case double n when 2800 <= n && n < 3200:
+                    return Path.GetFullPath("grandmaster.jpg");
+                case double n when 3200 <=n:
+                    return Path.GetFullPath("challenger.jpg");
+                default:
+                    return null;
+
+            }
+
+        }
+
+        public void Ausfüllenranks()
+        {
+            pictureboxesarr[0] = pictureBox1;
+            pictureboxesarr[1] = pictureBox2;
+            pictureboxesarr[2] = pictureBox3;
+            pictureboxesarr[3] = pictureBox4;
+            pictureboxesarr[4] = pictureBox5;
+            pictureboxesarr[5] = pictureBox6;
+            pictureboxesarr[6] = pictureBox7;
+            pictureboxesarr[7] = pictureBox8;
+            pictureboxesarr[8] = pictureBox9;
+            pictureboxesarr[9] = pictureBox10;
+
+            for (int i = 0; i < 10; i++)
+            {
+                string path = rankToFile(i);
+                if(path != null)
+                {
+                    pictureboxesarr[i].Image = Image.FromFile(path);
+                    pictureboxesarr[i].SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureboxesarr[i].SizeMode = PictureBoxSizeMode.CenterImage;
+                }
+                
+            }
         }
 
         /*  private void button5_Click(object sender, EventArgs e)

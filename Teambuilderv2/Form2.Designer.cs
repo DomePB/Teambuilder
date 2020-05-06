@@ -40,6 +40,7 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.Stammspieler1 = new System.Windows.Forms.Button();
+            this.ocr = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -154,11 +155,23 @@
             this.Stammspieler1.UseVisualStyleBackColor = true;
             this.Stammspieler1.Click += new System.EventHandler(this.Stammspieler1_Click);
             // 
+            // ocr
+            // 
+            this.ocr.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ocr.Location = new System.Drawing.Point(322, 125);
+            this.ocr.Name = "ocr";
+            this.ocr.Size = new System.Drawing.Size(226, 38);
+            this.ocr.TabIndex = 12;
+            this.ocr.Text = "OCR Screenshot";
+            this.ocr.UseVisualStyleBackColor = true;
+            this.ocr.Click += new System.EventHandler(this.ocr_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 497);
+            this.Controls.Add(this.ocr);
             this.Controls.Add(this.Stammspieler1);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
@@ -192,5 +205,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button Stammspieler1;
+        private System.Windows.Forms.Button ocr;
     }
 }

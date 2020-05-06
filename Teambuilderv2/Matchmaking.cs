@@ -56,12 +56,29 @@ namespace Teambuilderv2
             {
                 Summoner_V4 summoner = new Summoner_V4();
                 string id = summoner.GetSummonerByName(playerName).Id;
-
+               
+             
                 League_V4 league = new League_V4();
-                string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
-                string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
-                int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
-                return new Rank(lp, rank, tier);
+                if (league.GetLeagueByName(id).FirstOrDefault().queueType.Equals("RANKED_SOLO_5x5"))
+                {
+                    
+                    
+                    string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
+                    Console.WriteLine(tier);
+                    string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
+                    int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
+                    return new Rank(lp, rank, tier);
+                }
+                else
+                {
+                 
+                     string tier = league.GetLeagueByName(id).LastOrDefault().tier;
+                     string rank = league.GetLeagueByName(id).LastOrDefault().rank;
+                     int lp = league.GetLeagueByName(id).LastOrDefault().leaguePoints;
+                    return new Rank(lp, rank, tier);
+
+                }
+      
             }
             catch
             {

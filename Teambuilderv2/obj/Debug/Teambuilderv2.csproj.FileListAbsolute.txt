@@ -47,3 +47,10 @@ F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.CopyComplete
 F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.exe
 F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.pdb
 F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.UserControl1.resources
+F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.UserControl2.resources
+F:\Teambuilder\Teambuilderv2\bin\Debug\x86\liblept1753.dll
+F:\Teambuilder\Teambuilderv2\bin\Debug\x86\libtesseract3052.dll
+F:\Teambuilder\Teambuilderv2\bin\Debug\x64\liblept1753.dll
+F:\Teambuilder\Teambuilderv2\bin\Debug\x64\libtesseract3052.dll
+F:\Teambuilder\Teambuilderv2\bin\Debug\Tesseract.dll
+F:\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.Form2.resources

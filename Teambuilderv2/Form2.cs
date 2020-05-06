@@ -59,5 +59,43 @@ namespace Teambuilderv2
             textBox10.Text = "TeufelMuffin";
 
         }
+
+        private void ocr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OCRApi api = new OCRApi();
+                string[] result = api.ResultAsync().Result;
+                MessageBox.Show(result[0]);
+                string notsplitted = result[0];
+                string[] seperator = { " " };
+                string[] splitted = notsplitted.Split(seperator, 10, StringSplitOptions.RemoveEmptyEntries);
+                string[] test = Filter(splitted);
+                //test for for filtered
+                foreach(String l in test)
+                 {
+              //  Console.WriteLine("testforfilltered: " + test[l]);
+               }
+            } 
+            catch
+            {
+                MessageBox.Show("error");
+            }
+        }
+
+        private string[] Filter(string [] notFilltered)
+        {
+            string[] filltered = new string[10];
+            int m = 0;
+            for(int i = 0;i<notFilltered.Length;i++)
+            {
+                if(!int.TryParse(notFilltered[i],out _) && !notFilltered[i].Contains(":"))
+                {
+                    filltered[m] = notFilltered[i];
+                    m++;
+                }
+            }
+            return filltered;
+        }
     }
 }

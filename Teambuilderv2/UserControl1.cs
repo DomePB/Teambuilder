@@ -19,7 +19,7 @@ namespace Teambuilderv2
             InitializeComponent();
         }
 
-        public void Loadcontrol()
+        public void LoadControl()
         {
             cnn.connection();
             SqlDataAdapter testad = new SqlDataAdapter("SELECT Team1Top,Team1Jungle,Team1Mid,Team1Adc,Team1Support,Team2Top,Team2Jungle,Team2Mid,Team2Adc,Team2Support,TeamWin FROM Matchhistory", cnn.cnn);
@@ -28,6 +28,7 @@ namespace Teambuilderv2
             dataGridView1.DataSource = test;
 
         }
+
     }
 
 
