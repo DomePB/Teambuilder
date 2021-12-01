@@ -52,9 +52,9 @@ namespace Teambuilderv2
             textBox3.Text = "paulkemper24";
             textBox4.Text = "flappy the bird";
             textBox5.Text = "PhoenixblueLp";
-            textBox6.Text = "KingMashallah";
-            textBox7.Text = "ItsArtMom";
-            textBox8.Text = "havethephlow";
+            textBox6.Text = "MUC DomePB";
+            textBox7.Text = "Schruht";
+            textBox8.Text = "Tee Tiger";
             textBox9.Text = "xGuts";
             textBox10.Text = "TeufelMuffin";
 

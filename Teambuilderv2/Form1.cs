@@ -14,8 +14,8 @@ namespace Teambuilderv2
 {
     public partial class Form1 : Form
     {
-        // string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =F:\Teambuilder\Teambuilderv2\Database1.mdf; Integrated Security = True"; //F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\Database1.mdf
-        // SqlConnection cnn;
+         //string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\dome2\Documents\GitHub\Teambuilder\Teambuilderv2\Database1.mdf; Integrated Security = True"; //F:\Visual Studios Projects\Teambuilderv2\Teambuilderv2\Database1.mdf
+       //  SqlConnection cnn;
        
         Databaseconnection dbc = new Databaseconnection();
         String[] team1 = new String[5];
@@ -71,6 +71,7 @@ namespace Teambuilderv2
                     players[m] = ausfüllen[m];
                 }
             }
+            Ausfüllenranks();
         }
       /*  private void Connectionst()
         {
@@ -328,6 +329,7 @@ namespace Teambuilderv2
             switch(rank)
                 {
                 case double n when n < 400:
+                  
                     return Path.GetFullPath("iron.jpg");
                 case double n when 400<=n && n<800:
                     return Path.GetFullPath("bronze.jpg");
@@ -341,6 +343,7 @@ namespace Teambuilderv2
                     Console.WriteLine(Path.GetFullPath("diamond.jpg"));
                     return Path.GetFullPath("diamond.jpg");
                 case double n when 2400 <= n && n < 2800:
+                    Console.WriteLine("master:", Path.GetFullPath("master.jpg"));
                     return Path.GetFullPath("master.jpg");
                 case double n when 2800 <= n && n < 3200:
                     return Path.GetFullPath("grandmaster.jpg");

@@ -96,11 +96,33 @@ namespace Teambuilderv2
                 dbc.connection();
                 SqlCommand wins = new SqlCommand("SELECT TotalWins FROM Players WHERE PlayerName=@summonername", dbc.cnn);
                 wins.Parameters.Add("@summonername", playerName);
-                Int32 Anzahlwins = (Int32)wins.ExecuteScalar();
+                //wins.Parameters.AddWithValue("@summonername", playerName);
+                Int32 Anzahlwins = 0;
+                if (wins.ExecuteScalar() != null)
+                {
+                     Anzahlwins = (Int32)wins.ExecuteScalar();
+                }
+              
+            //        Int32 Anzahlwins = (Int32)wins.ExecuteScalar();
+                
+                
                 SqlCommand looses = new SqlCommand("SELECT TotalLooses FROM Players WHERE PlayerName=@summonername", dbc.cnn);
                 looses.Parameters.Add("@summonername", playerName);
-                Int32 Anzahllooses = (Int32)looses.ExecuteScalar();
-                double winrate =  (double)Anzahlwins/ ((double)Anzahlwins + (double)Anzahllooses);
+                Int32 Anzahllooses = 0;
+                if( looses.ExecuteScalar() != null)
+                {
+                    Anzahllooses = (Int32)looses.ExecuteScalar();
+                }
+               
+
+                // Int32 Anzahllooses = (Int32)looses.ExecuteScalar();
+                double winrate = 0.5;
+
+               if( Anzahlwins+Anzahllooses != 0)
+                { 
+                    winrate = (double)Anzahlwins / ((double)Anzahlwins + (double)Anzahllooses);
+                }
+               // double winrate =  (double)Anzahlwins/ ((double)Anzahlwins + (double)Anzahllooses);
                 dbc.close();
                
                 return Math.Asin(2 * winrate - 1) * 1 / (1 + Math.Exp(3 - (Anzahlwins + Anzahllooses)));
@@ -124,11 +146,21 @@ namespace Teambuilderv2
                 }
                 else
                 {
+                try
+                {
+                    dbc.connection();
                     playerRank = getRank(playerName);
                     Program.playerCache.Add(playerName, playerRank);
+                    dbc.close();
+                }
+                catch
+                {
+                    return 0;
+                }
+                    
                 }
 
-                dbc.close();
+              
 
             double ranking = playerRank.lp + 400 * Array.IndexOf(tiers, playerRank.tier) + (4-romanToDecimal(playerRank.rank)) * 100 + 1000 * getwinrate(playerName);
             Console.WriteLine(playerName+" "+ ranking);

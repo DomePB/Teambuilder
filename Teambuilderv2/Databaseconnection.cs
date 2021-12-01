@@ -17,10 +17,11 @@ namespace Teambuilderv2
       
         public void connection()
         {
-            string fullpath = Path.GetFullPath("Database1.mdf");
+              string fullpath = Path.GetFullPath("Database1.mdf");
+            //   connectionString = $@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\dome2\Documents\GitHub\Teambuilder\Teambuilderv2\bin\Debug\Database1.mdf; Integrated Security = True";
             connectionString = $@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename ={fullpath}; Integrated Security = True";
-            Console.WriteLine(fullpath);
-          
+            //  Console.WriteLine(fullpath);
+
             cnn = new SqlConnection(connectionString);
             try
             {
@@ -29,7 +30,7 @@ namespace Teambuilderv2
             }
             catch
             {
-                //  MessageBox.Show("Connections failed");
+              //   MessageBox.Show("Connections failed");
             }
         }
 

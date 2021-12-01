@@ -17,7 +17,11 @@ namespace Teambuilderv2
         public RiotApi()
         {
             Region = "euw1";
-            Key = "RGAPI-73a1296c-2f67-425e-99ea-e77d76f37b01";
+          //  Key = "";
+        }
+        protected string GetKey()
+        {
+            return System.IO.File.ReadAllText(@"C:\Users\dome2\Documents\RiotApiKey.txt");
         }
         protected HttpResponseMessage GET(string URL) 
         { 
@@ -30,7 +34,8 @@ namespace Teambuilderv2
         }
 
         protected string GetURL(string path)
-        { 
+        {
+            Key = GetKey();
             return "https://" + Region + ".api.riotgames.com/lol/" + path + "?api_key=" + Key;
         }
         public string GetKey(string path)
