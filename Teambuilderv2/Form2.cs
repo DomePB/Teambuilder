@@ -47,16 +47,16 @@ namespace Teambuilderv2
         private void Stammspieler1_Click(object sender, EventArgs e)
         {
 
-            textBox1.Text = "DomePB";
+            textBox1.Text = "Nitror";
             textBox2.Text = "Bitse";
-            textBox3.Text = "paulkemper24";
-            textBox4.Text = "flappy the bird";
+            textBox3.Text = "Don Noway";
+            textBox4.Text = "Nitror";
             textBox5.Text = "PhoenixblueLp";
-            textBox6.Text = "MUC DomePB";
-            textBox7.Text = "Schruht";
+            textBox6.Text = "Envy Carry";
+            textBox7.Text = "Witness Azir";
             textBox8.Text = "Tee Tiger";
             textBox9.Text = "xGuts";
-            textBox10.Text = "TeufelMuffin";
+            textBox10.Text = "Replay Remix";
 
         }
 

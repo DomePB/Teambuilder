@@ -58,7 +58,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.test = new System.Windows.Forms.Button();
             this.userControl11 = new Teambuilderv2.UserControl1();
             this.userControl21 = new Teambuilderv2.UserControl2();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -361,16 +360,6 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // test
-            // 
-            this.test.Location = new System.Drawing.Point(537, 9);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(75, 23);
-            this.test.TabIndex = 39;
-            this.test.Text = "test";
-            this.test.UseVisualStyleBackColor = true;
-            this.test.Click += new System.EventHandler(this.test_Click);
-            // 
             // userControl11
             // 
             this.userControl11.Location = new System.Drawing.Point(-5, 46);
@@ -483,7 +472,6 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.test);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -567,7 +555,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private UserControl2 userControl21;
-        private System.Windows.Forms.Button test;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;

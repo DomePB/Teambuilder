@@ -15,13 +15,23 @@ namespace Teambuilderv2
 
             var response = GET(GetURL(path));
             string content = response.Content.ReadAsStringAsync().Result;
+            string defaultjson = @"{'queueType': 'RANKED_SOLO_5x5','tier':'GOLD','rank': 'IV'}";
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return JsonConvert.DeserializeObject<List<League>>(content);
+                if(JsonConvert.DeserializeObject<List<League>>(content).Count != 0)
+                {
+                    return JsonConvert.DeserializeObject<List<League>>(content);
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<List<League>>(defaultjson);
+                }
+                
             }
             else
             {
+                //return JsonConvert.DeserializeObject<List<League>>(defaultjson);
                 return null;
             }
         }

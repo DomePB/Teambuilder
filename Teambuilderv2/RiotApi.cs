@@ -36,6 +36,7 @@ namespace Teambuilderv2
         protected string GetURL(string path)
         {
             Key = GetKey();
+          
             return "https://" + Region + ".api.riotgames.com/lol/" + path + "?api_key=" + Key;
         }
         public string GetKey(string path)

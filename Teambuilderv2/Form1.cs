@@ -301,20 +301,6 @@ namespace Teambuilderv2
             }
         }
 
-        private void test_Click(object sender, EventArgs e)
-        {
-            Ausfüllenranks();
-           /*
-                LolClientApi lc = new LolClientApi();
-                Member[] result = lc.GetMembers();
-              MessageBox.Show(" "+result[0].summonerId);
-                Console.WriteLine(result[0].summonerId);
-                */
-            
-
-            
-        }
-
         private double getrank(string playername)
         {
             Matchmaking m = new Matchmaking();

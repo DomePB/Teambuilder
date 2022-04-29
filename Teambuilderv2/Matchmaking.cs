@@ -56,17 +56,25 @@ namespace Teambuilderv2
             {
                 Summoner_V4 summoner = new Summoner_V4();
                 string id = summoner.GetSummonerByName(playerName).Id;
-               
-             
+
+                
                 League_V4 league = new League_V4();
-                if (league.GetLeagueByName(id).FirstOrDefault().queueType.Equals("RANKED_SOLO_5x5"))
+                List<League> test = new List<League>();
+                test = league.GetLeagueByName(id);
+                foreach (var s in test)
+                {
+                    Console.WriteLine(test[0]);
+                }
+
+                    if (league.GetLeagueByName(id).FirstOrDefault().queueType.Equals("RANKED_SOLO_5x5"))
                 {
                     
                     
                     string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
-                    Console.WriteLine(tier);
+                  //  Console.WriteLine("test: "+tier);
                     string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
                     int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
+                    
                     return new Rank(lp, rank, tier);
                 }
                 else
@@ -82,7 +90,8 @@ namespace Teambuilderv2
             }
             catch
             {
-                return new Rank(0, "GOLD", "IV");
+               // Console.WriteLine("test");
+                return new Rank(0,"IV","GOLD");
             }
                
             
@@ -155,7 +164,8 @@ namespace Teambuilderv2
                 }
                 catch
                 {
-                    return 0;
+                    return 1500;
+                   
                 }
                     
                 }
@@ -163,7 +173,7 @@ namespace Teambuilderv2
               
 
             double ranking = playerRank.lp + 400 * Array.IndexOf(tiers, playerRank.tier) + (4-romanToDecimal(playerRank.rank)) * 100 + 1000 * getwinrate(playerName);
-            Console.WriteLine(playerName+" "+ ranking);
+            //Console.WriteLine(playerName+" "+ ranking);
 
                 return playerRank.lp + 400 * Array.IndexOf(tiers, playerRank.tier) + (4-romanToDecimal(playerRank.rank)) * 100 + 1000 * getwinrate(playerName);
 
@@ -239,7 +249,7 @@ namespace Teambuilderv2
             {
 
                 firstIndex = players.IndexOf(best);
-                Console.WriteLine("ayayayayayay");
+               // Console.WriteLine("ayayayayayay");
             }
             else
             {
