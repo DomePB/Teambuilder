@@ -59,32 +59,34 @@ namespace Teambuilderv2
 
                 
                 League_V4 league = new League_V4();
-                List<League> test = new List<League>();
-                test = league.GetLeagueByName(id);
-                foreach (var s in test)
-                {
-                    Console.WriteLine(test[0]);
-                }
+                List<League> leaguelist = new List<League>();
+                leaguelist = league.GetLeagueByName(id);
+                
 
-                    if (league.GetLeagueByName(id).FirstOrDefault().queueType.Equals("RANKED_SOLO_5x5"))
+                    if (leaguelist[0].queueType.Equals("RANKED_SOLO_5x5"))
                 {
+                    Console.WriteLine("RANKEDSOLOQ");
                     
-                    
-                    string tier = league.GetLeagueByName(id).FirstOrDefault().tier;
-                  //  Console.WriteLine("test: "+tier);
-                    string rank = league.GetLeagueByName(id).FirstOrDefault().rank;
-                    int lp = league.GetLeagueByName(id).FirstOrDefault().leaguePoints;
+                    string tier = leaguelist[0].tier;
+                  
+                    string rank = leaguelist[0].rank;
+                    int lp = leaguelist[0].leaguePoints;
                     
                     return new Rank(lp, rank, tier);
+                }
+                else if(leaguelist[1].queueType.Equals("RANKED_SOLO_5x5"))
+                {
+                 
+                     string tier = leaguelist[1].tier;
+                     string rank = leaguelist[1].rank;
+                     int lp = leaguelist[1].leaguePoints;
+                    return new Rank(lp, rank, tier);
+
                 }
                 else
                 {
-                 
-                     string tier = league.GetLeagueByName(id).LastOrDefault().tier;
-                     string rank = league.GetLeagueByName(id).LastOrDefault().rank;
-                     int lp = league.GetLeagueByName(id).LastOrDefault().leaguePoints;
-                    return new Rank(lp, rank, tier);
-
+                    
+                    return new Rank(0, "IV", "GOLD");
                 }
       
             }
