@@ -61,33 +61,25 @@ namespace Teambuilderv2
                 League_V4 league = new League_V4();
                 List<League> leaguelist = new List<League>();
                 leaguelist = league.GetLeagueByName(id);
+                string tier = "GOLD";
+                string rank = "IV";
+                int lp = 0;
+
+                for(int i = 0; i<leaguelist.Count-1; i++)
+                {
+                    if (leaguelist[i].queueType.Equals("RANKED_SOLO_5x5"))
+                    {
+                        tier = leaguelist[i].tier;
+                        rank = leaguelist[i].rank;
+                        lp = leaguelist[i].leaguePoints;
+
+                    }
+                }
+
+                   
+                    return new Rank(lp, rank, tier);
+                   // return new Rank(0, "IV", "GOLD");
                 
-
-                    if (leaguelist[0].queueType.Equals("RANKED_SOLO_5x5"))
-                {
-                    Console.WriteLine("RANKEDSOLOQ");
-                    
-                    string tier = leaguelist[0].tier;
-                  
-                    string rank = leaguelist[0].rank;
-                    int lp = leaguelist[0].leaguePoints;
-                    
-                    return new Rank(lp, rank, tier);
-                }
-                else if(leaguelist[1].queueType.Equals("RANKED_SOLO_5x5"))
-                {
-                 
-                     string tier = leaguelist[1].tier;
-                     string rank = leaguelist[1].rank;
-                     int lp = leaguelist[1].leaguePoints;
-                    return new Rank(lp, rank, tier);
-
-                }
-                else
-                {
-                    
-                    return new Rank(0, "IV", "GOLD");
-                }
       
             }
             catch
