@@ -65,7 +65,7 @@ namespace Teambuilderv2
                 string rank = "IV";
                 int lp = 0;
 
-                for(int i = 0; i<leaguelist.Count-1; i++)
+                for(int i = 0; i<leaguelist.Count; i++)
                 {
                     if (leaguelist[i].queueType.Equals("RANKED_SOLO_5x5"))
                     {
