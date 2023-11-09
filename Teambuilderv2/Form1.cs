@@ -24,12 +24,15 @@ namespace Teambuilderv2
         PictureBox[] pictureboxesarr = new PictureBox[10];
         bool matchhistoryvis = true;
         bool statsvis = true;
+        
         public Form1()
         {
             InitializeComponent();
             //Connectionst();
          
         }
+
+    
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -367,6 +370,16 @@ namespace Teambuilderv2
                 
             }
         }
+
+        //SHOW ARENA FORM
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var ArenaForm = new Form3();
+            ArenaForm.Show();
+            this.Hide();
+        }
+
+
 
         /*  private void button5_Click(object sender, EventArgs e)
           {

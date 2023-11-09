@@ -301,5 +301,15 @@ namespace Teambuilderv2
             Console.WriteLine("team2av: "+team2Average);
             return playerNames;
         }
+
+        public String[] arenamatchmake(String[] names)
+        {
+            String[] playerNames = new String[8];
+            var random = new Random();
+
+            playerNames =  names.OrderBy(x => random.Next()).ToArray();
+            return playerNames;
+        }
+
     }
 }

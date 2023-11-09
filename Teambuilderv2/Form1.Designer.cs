@@ -58,8 +58,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.userControl11 = new Teambuilderv2.UserControl1();
-            this.userControl21 = new Teambuilderv2.UserControl2();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -70,6 +68,9 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.userControl11 = new Teambuilderv2.UserControl1();
+            this.userControl21 = new Teambuilderv2.UserControl2();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -360,22 +361,6 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // userControl11
-            // 
-            this.userControl11.Location = new System.Drawing.Point(-5, 46);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(1170, 370);
-            this.userControl11.TabIndex = 35;
-            this.userControl11.Visible = false;
-            // 
-            // userControl21
-            // 
-            this.userControl21.Location = new System.Drawing.Point(-5, 38);
-            this.userControl21.Name = "userControl21";
-            this.userControl21.Size = new System.Drawing.Size(1170, 367);
-            this.userControl21.TabIndex = 38;
-            this.userControl21.Visible = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(27, 105);
@@ -456,12 +441,40 @@
             this.pictureBox10.TabIndex = 49;
             this.pictureBox10.TabStop = false;
             // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(-5, 46);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(1170, 370);
+            this.userControl11.TabIndex = 35;
+            this.userControl11.Visible = false;
+            // 
+            // userControl21
+            // 
+            this.userControl21.Location = new System.Drawing.Point(-5, 38);
+            this.userControl21.Name = "userControl21";
+            this.userControl21.Size = new System.Drawing.Size(1170, 367);
+            this.userControl21.TabIndex = 38;
+            this.userControl21.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(937, 8);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(184, 50);
+            this.button2.TabIndex = 50;
+            this.button2.Text = "ARENA";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1163, 405);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox8);
@@ -565,6 +578,7 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Button button2;
     }
 }
 

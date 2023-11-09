@@ -79,3 +79,30 @@ C:\Users\dome2\Documents\GitHub\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv
 C:\Users\dome2\Documents\GitHub\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.CopyComplete
 C:\Users\dome2\Documents\GitHub\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.exe
 C:\Users\dome2\Documents\GitHub\Teambuilder\Teambuilderv2\obj\Debug\Teambuilderv2.pdb
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Database1.mdf
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Database1_log.ldf
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\x86\liblept1753.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\x86\libtesseract3052.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\x64\liblept1753.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\x64\libtesseract3052.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Teambuilderv2.exe.config
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Teambuilderv2.exe
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Teambuilderv2.pdb
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Newtonsoft.Json.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\System.Net.Http.Formatting.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Tesseract.dll
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\Newtonsoft.Json.xml
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\bin\Debug\System.Net.Http.Formatting.xml
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.AssemblyReference.cache
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.Form1.resources
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.Form2.resources
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.Properties.Resources.resources
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.UserControl1.resources
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.UserControl2.resources
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.GenerateResource.cache
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.CoreCompileInputs.cache
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.csproj.CopyComplete
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.exe
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.pdb
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.Form3.resources
+F:\Visual Studios Projects\9.11.2023\Teambuilderv2\obj\Debug\Teambuilderv2.Form4.resources
