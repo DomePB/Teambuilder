@@ -206,18 +206,6 @@ namespace Teambuilderv2
 
         private static void capture(Screen window,string file)
         {
-            /* try
-            {
-                Rectangle s_rect = Screen.GetBounds(Point.Empty);
-                using (Bitmap bmp = new Bitmap(s_rect.Width, s_rect.Height))
-                {
-                    using (Graphics gScreen = Graphics.FromImage(bmp))
-                        gScreen.CopyFromScreen(Point.Empty, Point.Empty, s_rect.Size);
-                    bmp.Save(file, System.Drawing.Imaging.ImageFormat.Png);
-                }
-            }
-            catch (Exception) { /*TODO: Any exception handling. /} */
-        
              var frm = Form.ActiveForm;
             using (var bmp = new Bitmap(frm.Width, frm.Height))
             {

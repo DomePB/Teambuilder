@@ -54,5 +54,44 @@ namespace Teambuilderv2
             }
            
         }
+
+        private void Reroll_Click(object sender, EventArgs e)
+        {
+            Roll(players);
+        }
+        private void Roll(String[] p)
+        {
+            Matchmaking matchmaking = new Matchmaking();
+            String[] teams = matchmaking.arenamatchmake(p);
+
+            Form3 Form3 = new Form3();
+            Form3.AusfüllendergerolltenNamen(teams);
+            Form3.Show();
+            this.Close();
+        }
+
+        private void Screenshotbutton_Click(object sender, EventArgs e)
+        {
+            capture(Screen.PrimaryScreen, "teams.png");
+            using (dWebHook dcWeb = new dWebHook())
+
+            {
+                dcWeb.ProfilePicture = "";
+                dcWeb.UserName = "Mannfred";
+                dcWeb.WebHook = "https://discordapp.com/api/webhooks/681283305647505423/HV3ZJaij4ZpXDuU_iHw53mrDufLcSG_RXluqhInfterjjVRk1_jibh_MPSWLS984CNhw";
+                //  dcWeb.SendMessage(i);
+                dcWeb.SendPicture();
+            }
+        }
+
+        private static void capture(Screen window, string file)
+        {
+            var frm = Form.ActiveForm;
+            using (var bmp = new Bitmap(frm.Width, frm.Height))
+            {
+                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                bmp.Save(file, System.Drawing.Imaging.ImageFormat.Png);
+            }
+        }
     }
 }

@@ -41,6 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.Reroll = new System.Windows.Forms.Button();
+            this.Screenshotbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -145,11 +147,33 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "TEAM 4";
             // 
+            // Reroll
+            // 
+            this.Reroll.Location = new System.Drawing.Point(656, 12);
+            this.Reroll.Name = "Reroll";
+            this.Reroll.Size = new System.Drawing.Size(75, 23);
+            this.Reroll.TabIndex = 13;
+            this.Reroll.Text = "ReRoll";
+            this.Reroll.UseVisualStyleBackColor = true;
+            this.Reroll.Click += new System.EventHandler(this.Reroll_Click);
+            // 
+            // Screenshotbutton
+            // 
+            this.Screenshotbutton.Location = new System.Drawing.Point(525, 380);
+            this.Screenshotbutton.Name = "Screenshotbutton";
+            this.Screenshotbutton.Size = new System.Drawing.Size(75, 23);
+            this.Screenshotbutton.TabIndex = 14;
+            this.Screenshotbutton.Text = "SEND";
+            this.Screenshotbutton.UseVisualStyleBackColor = true;
+            this.Screenshotbutton.Click += new System.EventHandler(this.Screenshotbutton_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Screenshotbutton);
+            this.Controls.Add(this.Reroll);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -185,5 +209,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button Reroll;
+        private System.Windows.Forms.Button Screenshotbutton;
     }
 }
