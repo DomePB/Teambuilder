@@ -61,6 +61,7 @@ namespace Teambuilderv2
         }
         private void Roll(String[] p)
         {
+         
             Matchmaking matchmaking = new Matchmaking();
             String[] teams = matchmaking.arenamatchmake(p);
 
@@ -93,5 +94,7 @@ namespace Teambuilderv2
                 bmp.Save(file, System.Drawing.Imaging.ImageFormat.Png);
             }
         }
+
+       
     }
 }

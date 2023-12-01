@@ -50,12 +50,14 @@ namespace Teambuilderv2
 
         private String[] tiers = { "IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "DIAMOND", "MASTER", "GRANDMASTER", "CHALLENGER" };
 
-        private Rank getRank(String playerName)
+        private Rank getRank(String playerName, String Tagline)
         {
             try
             {
+                Account_V1 account = new Account_V1();
+                string puuid = account.GetAccountByFullName(playerName, Tagline).puuid;
                 Summoner_V4 summoner = new Summoner_V4();
-                string id = summoner.GetSummonerByName(playerName).Id;
+                string id = summoner.GetSummonerByPuuid(puuid).Id;
 
                 
                 League_V4 league = new League_V4();
@@ -136,7 +138,7 @@ namespace Teambuilderv2
            
         }
 
-        public double rank(String playerName)
+        public double rank(String playerName,String Tag)
         {
           
                 Rank playerRank;
@@ -144,7 +146,7 @@ namespace Teambuilderv2
 
             if (Program.playerCache.ContainsKey(playerName)) 
                 {
-                    playerRank = Program.playerCache[playerName];
+                    playerRank = Program.playerCache[playerName]; // DOES NOT WORK WITH TAGS YET 
                   
                 }
                 else
@@ -152,7 +154,7 @@ namespace Teambuilderv2
                 try
                 {
                     dbc.connection();
-                    playerRank = getRank(playerName);
+                    playerRank = getRank(playerName,Tag); 
                     Program.playerCache.Add(playerName, playerRank);
                     dbc.close();
                 }
@@ -204,14 +206,14 @@ namespace Teambuilderv2
             return minPlayer;
         }
 
-        public String[] matchmake(String[] names)
+        public (String[], String[]) matchmake(String[] names, String[] Tags)
         {
 
             List<Player> players = new List<Player>();
 
             for (int i = 0; i < 10; i++)
             {
-                players.Add(new Player(names[i], rank(names[i])));
+                players.Add(new Player(names[i], rank(names[i], Tags[i])));
             }
 
             List<Player> team1 = new List<Player>();
@@ -299,7 +301,7 @@ namespace Teambuilderv2
 
             Console.WriteLine("team1av: "+team1Average);
             Console.WriteLine("team2av: "+team2Average);
-            return playerNames;
+            return (playerNames,Tags);//TAGS NOT SORTED
         }
 
         public String[] arenamatchmake(String[] names)

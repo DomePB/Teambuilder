@@ -72,6 +72,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="Account_V1.cs" />
     <Compile Include="Databaseconnection.cs" />
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>

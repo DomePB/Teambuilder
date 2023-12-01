@@ -11,7 +11,7 @@ namespace Teambuilderv2
     {
         public List<League> GetLeagueByName(string SummonerId)
         {
-            string path = "league/v4/entries/by-summoner/" + SummonerId;
+            string path = "lol/league/v4/entries/by-summoner/" + SummonerId;
 
             var response = GET(GetURL(path));
             string content = response.Content.ReadAsStringAsync().Result;

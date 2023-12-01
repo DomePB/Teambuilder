@@ -11,11 +11,25 @@ namespace Teambuilderv2
     {
       public Summoner GetSummonerByName(string SummonerName)
         {
-            string path = "summoner/v4/summoners/by-name/" + SummonerName;
+            string path = "lol/summoner/v4/summoners/by-name/" + SummonerName;
 
             var response = GET(GetURL(path));
             string content = response.Content.ReadAsStringAsync().Result;
 
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<Summoner>(content);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Summoner GetSummonerByPuuid(string puuid) 
+        {
+            string path = "lol/summoner/v4/summoners/by-puuid/" + puuid;
+            var response = GET(GetURL(path));
+            string content = response.Content.ReadAsStringAsync().Result;
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return JsonConvert.DeserializeObject<Summoner>(content);

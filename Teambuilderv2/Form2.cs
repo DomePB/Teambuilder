@@ -20,20 +20,20 @@ namespace Teambuilderv2
         private void Sendbutton_Click(object sender, EventArgs e)
         {
             String[] Textboxarr = { Convert.ToString(textBox1.Text), Convert.ToString(textBox2.Text), Convert.ToString(textBox3.Text), Convert.ToString(textBox4.Text), Convert.ToString(textBox5.Text), Convert.ToString(textBox6.Text), Convert.ToString(textBox7.Text), Convert.ToString(textBox8.Text), Convert.ToString(textBox9.Text), Convert.ToString(textBox10.Text) };
-
+            String[] Taglines = { Convert.ToString(Tagline1.Text), Convert.ToString(Tagline2.Text), Convert.ToString(Tagline3.Text), Convert.ToString(Tagline4.Text), Convert.ToString(Tagline5.Text), Convert.ToString(Tagline6.Text), Convert.ToString(Tagline7.Text), Convert.ToString(Tagline8.Text), Convert.ToString(Tagline9.Text), Convert.ToString(Tagline10.Text) };
           //  textBox1.Text = Textboxarr[0] + "ausgabe";
 
-            Roll(Textboxarr);
+            Roll(Textboxarr,Taglines);
         }
 
-        private void Roll(String[] p)
+        private void Roll(String[] p, String[] Tags)
         {
             Matchmaking matchmaking = new Matchmaking();
 
-            String[] teams = matchmaking.matchmake(p);
+            (String[] teams, String[] TagsLines) = matchmaking.matchmake(p,Tags);
 
             Form1 Form1 = new Form1();
-            Form1.AusfüllendergerolltenNamen(teams);
+            Form1.AusfüllendergerolltenNamen(teams, TagsLines);
             Form1.Show();
             this.Close();
         }

@@ -37,7 +37,12 @@ namespace Teambuilderv2
         {
             Key = GetKey();
           
-            return "https://" + Region + ".api.riotgames.com/lol/" + path + "?api_key=" + Key;
+            return "https://" + Region + ".api.riotgames.com/" + path + "?api_key=" + Key;
+        }
+        protected string GetURL2(string path)
+        {
+            Key = GetKey();
+            return path + "?api_key=" + Key;
         }
         public string GetKey(string path)
         {

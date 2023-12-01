@@ -21,6 +21,7 @@ namespace Teambuilderv2
         String[] team1 = new String[5];
         String[] team2 = new String[5];
         String[] players = new String[10];
+        String[] Tags = new String[10];
         PictureBox[] pictureboxesarr = new PictureBox[10];
         bool matchhistoryvis = true;
         bool statsvis = true;
@@ -46,9 +47,9 @@ namespace Teambuilderv2
             RollenForm.Show();
             this.Hide();
         }
-        public void AusfüllendergerolltenNamen(String[] ausfüllen)
+        public void AusfüllendergerolltenNamen(String[] ausfüllen, String[] TagLines)
         {
-          
+            Tags = TagLines;// NOT CORRECT ORDER
             Console.WriteLine("aufüllenwirdausgeführt");
             Ausgabe1.Text = Convert.ToString(ausfüllen[0]);
             Ausgabe2.Text = Convert.ToString(ausfüllen[1]);
@@ -229,8 +230,8 @@ namespace Teambuilderv2
             }
             Matchmaking matchmaking = new Matchmaking();
 
-            String[] teams = matchmaking.matchmake(playernames);
-            AusfüllendergerolltenNamen(teams);
+            (String[] teams, String[] TagLines) = matchmaking.matchmake(playernames,Tags); // TAGlines wrong order
+            AusfüllendergerolltenNamen(teams,TagLines);
             Ausfüllenranks();
         }
 
@@ -292,17 +293,17 @@ namespace Teambuilderv2
             }
         }
 
-        private double getrank(string playername)
+        private double getrank(string playername,string Tag)
         {
             Matchmaking m = new Matchmaking();
-            double rank = m.rank(playername);
+            double rank = m.rank(playername,Tag);
             
             return rank;
         }
         
         private string rankToFile(int i)
         {
-            double rank = getrank(players[i]);
+            double rank = getrank(players[i], Tags[i]);
             switch(rank)
                 {
                 case double n when n < 400:
