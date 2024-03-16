@@ -22,7 +22,7 @@ namespace Teambuilderv2.DiscordBot.commands
         public async Task playcmd(CommandContext ctx, params string[] text) {
             string result = string.Join(" ", text);
             string[] Playername = result.Split('#');
-          await ctx.Channel.SendMessageAsync($"{Playername[0]} {Playername[1]}");
+          await ctx.Channel.SendMessageAsync($"Logged in player: {Playername[0]} {Playername[1]}");
             ForwardMessageToProgramm(Playername[0], Playername[1]);
         }
 

@@ -17,57 +17,6 @@ namespace Teambuilderv2
         public Form2()
         {
             InitializeComponent();
-            TextBox[] Textboxes = { textBox1, Tagline1, textBox2, Tagline2, textBox3, Tagline3, textBox4, Tagline4, textBox5, Tagline5, textBox6, Tagline6, textBox7, Tagline7, textBox8, Tagline8, textBox9, Tagline9, textBox10, Tagline10 };
-           
-           
-            int count = 0;
-            try
-            {
-                
-               
-                    while (true)
-                    {
-                    using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("Pipe1", PipeDirection.In))
-                    {
-                        if (!pipeServer.IsConnected)
-                        {
-                            pipeServer.WaitForConnection();
-                        }
-                      
-                        using (StreamReader sr = new StreamReader(pipeServer))
-                        {
-                            string playername = sr.ReadLine();
-                            string tagline = sr.ReadLine();
-                            if (playername != null && tagline != null)
-                            {
-                                Textboxes[count].Text = playername;
-                                count++;
-                                Textboxes[count].Text = tagline;
-                                count++;
-                                Console.WriteLine("Received message from Discord bot: " + playername + tagline);
-
-                            }
-
-                            if (count == 20)
-                            {
-                                pipeServer.Close();
-                                break;
-                            }
-                        }
-                    }
-                   
-                    }
-                
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("IOException: " + ex.Message);
-            }
-            finally
-            {
-               
-            }
-
         }
 
         private void Sendbutton_Click(object sender, EventArgs e)
@@ -113,28 +62,7 @@ namespace Teambuilderv2
 
         }
 
-        private void ocr_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OCRApi api = new OCRApi();
-                string[] result = api.ResultAsync().Result;
-                MessageBox.Show(result[0]);
-                string notsplitted = result[0];
-                string[] seperator = { " " };
-                string[] splitted = notsplitted.Split(seperator, 10, StringSplitOptions.RemoveEmptyEntries);
-                string[] test = Filter(splitted);
-                //test for for filtered
-                foreach(String l in test)
-                 {
-              //  Console.WriteLine("testforfilltered: " + test[l]);
-               }
-            } 
-            catch
-            {
-                MessageBox.Show("error");
-            }
-        }
+        
 
         private string[] Filter(string [] notFilltered)
         {
@@ -149,6 +77,59 @@ namespace Teambuilderv2
                 }
             }
             return filltered;
+        }
+
+        private void discordbot_Click(object sender, EventArgs e)
+        {
+            TextBox[] Textboxes = { textBox1, Tagline1, textBox2, Tagline2, textBox3, Tagline3, textBox4, Tagline4, textBox5, Tagline5, textBox6, Tagline6, textBox7, Tagline7, textBox8, Tagline8, textBox9, Tagline9, textBox10, Tagline10 };
+
+            int count = 0;
+            try
+            {
+
+
+                while (true)
+                {
+                    using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("Pipe1", PipeDirection.In))
+                    {
+                        if (!pipeServer.IsConnected)
+                        {
+                            pipeServer.WaitForConnection();
+                        }
+
+                        using (StreamReader sr = new StreamReader(pipeServer))
+                        {
+                            string playername = sr.ReadLine();
+                            string tagline = sr.ReadLine();
+                            if (playername != null && tagline != null)
+                            {
+                                Textboxes[count].Text = playername;
+                                count++;
+                                Textboxes[count].Text = tagline;
+                                count++;
+                                Console.WriteLine("Received message from Discord bot: " + playername + tagline);
+
+                            }
+
+                            if (count == 20)
+                            {
+                                pipeServer.Close();
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("IOException: " + ex.Message);
+            }
+            finally
+            {
+
+            }
         }
     }
 }

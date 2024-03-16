@@ -40,7 +40,7 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.Stammspieler1 = new System.Windows.Forms.Button();
-            this.ocr = new System.Windows.Forms.Button();
+            this.discordbot = new System.Windows.Forms.Button();
             this.Tagline1 = new System.Windows.Forms.TextBox();
             this.Tagline2 = new System.Windows.Forms.TextBox();
             this.Tagline3 = new System.Windows.Forms.TextBox();
@@ -165,16 +165,16 @@
             this.Stammspieler1.UseVisualStyleBackColor = true;
             this.Stammspieler1.Click += new System.EventHandler(this.Stammspieler1_Click);
             // 
-            // ocr
+            // discordbot
             // 
-            this.ocr.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ocr.Location = new System.Drawing.Point(545, 125);
-            this.ocr.Name = "ocr";
-            this.ocr.Size = new System.Drawing.Size(226, 38);
-            this.ocr.TabIndex = 12;
-            this.ocr.Text = "OCR Screenshot";
-            this.ocr.UseVisualStyleBackColor = true;
-            this.ocr.Click += new System.EventHandler(this.ocr_Click);
+            this.discordbot.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discordbot.Location = new System.Drawing.Point(545, 125);
+            this.discordbot.Name = "discordbot";
+            this.discordbot.Size = new System.Drawing.Size(226, 38);
+            this.discordbot.TabIndex = 12;
+            this.discordbot.Text = "get Names";
+            this.discordbot.UseVisualStyleBackColor = true;
+            this.discordbot.Click += new System.EventHandler(this.discordbot_Click);
             // 
             // Tagline1
             // 
@@ -281,7 +281,7 @@
             this.Controls.Add(this.Tagline3);
             this.Controls.Add(this.Tagline2);
             this.Controls.Add(this.Tagline1);
-            this.Controls.Add(this.ocr);
+            this.Controls.Add(this.discordbot);
             this.Controls.Add(this.Stammspieler1);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
@@ -315,7 +315,7 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button Stammspieler1;
-        private System.Windows.Forms.Button ocr;
+        private System.Windows.Forms.Button discordbot;
         private System.Windows.Forms.TextBox Tagline1;
         private System.Windows.Forms.TextBox Tagline2;
         private System.Windows.Forms.TextBox Tagline3;
