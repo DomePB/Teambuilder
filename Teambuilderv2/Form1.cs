@@ -318,15 +318,16 @@ namespace Teambuilderv2
                     return Path.GetFullPath("gold.jpg");
                 case double n when 1600 <= n && n < 2000:
                     return Path.GetFullPath("platin.jpg");
-                case double n when 2000 <= n && n < 2400:
-                    Console.WriteLine(Path.GetFullPath("diamond.jpg"));
-                    return Path.GetFullPath("diamond.jpg");
+                case double n when 2000 <= n && n < 2400:  
+                    return Path.GetFullPath("emerald.jpg");
                 case double n when 2400 <= n && n < 2800:
+                    return Path.GetFullPath("diamond.jpg");
+                case double n when 2800 <= n && n < 3200:
                     Console.WriteLine("master:", Path.GetFullPath("master.jpg"));
                     return Path.GetFullPath("master.jpg");
-                case double n when 2800 <= n && n < 3200:
+                case double n when 3200 <= n && n < 3600:
                     return Path.GetFullPath("grandmaster.jpg");
-                case double n when 3200 <=n:
+                case double n when 3600 <=n:
                     return Path.GetFullPath("challenger.jpg");
                 default:
                     return null;
