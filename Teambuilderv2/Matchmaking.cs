@@ -48,7 +48,7 @@ namespace Teambuilderv2
             }
         }
 
-        private String[] tiers = { "IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "DIAMOND", "MASTER", "GRANDMASTER", "CHALLENGER" };
+        private String[] tiers = { "IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM","EMERALD", "DIAMOND", "MASTER", "GRANDMASTER", "CHALLENGER" };
 
         private Rank getRank(String playerName, String Tagline)
         {
