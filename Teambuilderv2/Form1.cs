@@ -25,7 +25,7 @@ namespace Teambuilderv2
         PictureBox[] pictureboxesarr = new PictureBox[10];
         bool matchhistoryvis = true;
         bool statsvis = true;
-        DiscordBot bot = new DiscordBot();
+        DiscordBotTB bot = new DiscordBotTB();
         public Form1()
         {
             bot.start();   

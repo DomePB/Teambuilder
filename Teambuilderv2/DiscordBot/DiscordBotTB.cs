@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
+using Teambuilderv2.DiscordBot.commands;
 
 namespace Teambuilderv2
 {
-    internal class DiscordBot
+    internal class DiscordBotTB
     {
         private static DiscordClient Client { get; set; }
         private static CommandsNextExtension Commands { get; set; }
@@ -34,6 +35,8 @@ namespace Teambuilderv2
             };
 
             Commands = Client.UseCommandsNext(commandConfig);
+
+            Commands.RegisterCommands<Commands>();
 
             await Client.ConnectAsync();
             await Task.Delay(-1);

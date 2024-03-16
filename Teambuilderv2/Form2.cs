@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,34 @@ namespace Teambuilderv2
         public Form2()
         {
             InitializeComponent();
+            NamedPipeServerStream pipeServer = new NamedPipeServerStream("Pipe1", PipeDirection.In);
+            pipeServer.WaitForConnection();
+
+            try
+            {
+                
+                using (StreamReader sr = new StreamReader(pipeServer))
+                {
+                    while (true)
+                    {
+                        string message = sr.ReadLine();
+                        if (message == null) {
+                            break;
+                        }
+                        Console.WriteLine("Received message from Discord bot: " + message);
+                    
+                    }
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("IOException: " + ex.Message);
+            }
+            finally
+            {
+                pipeServer.Close();
+            }
+
         }
 
         private void Sendbutton_Click(object sender, EventArgs e)
