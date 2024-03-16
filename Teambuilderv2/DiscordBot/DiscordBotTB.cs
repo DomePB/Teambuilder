@@ -7,6 +7,7 @@ using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
 using Teambuilderv2.DiscordBot.commands;
+using System.IO;
 
 namespace Teambuilderv2
 {
@@ -19,7 +20,7 @@ namespace Teambuilderv2
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All,
-                Token = "MTIxODY2MTIyMjk2Mjk1NDI2MQ.GWLX7E.VCrSk2UUe1LyNwiu6fmhV0bb_t5_3GFbdbbJIA",
+                Token = System.IO.File.ReadAllText(@"C:\Users\dome2\Documents\BotToken.txt"),
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
@@ -31,7 +32,6 @@ namespace Teambuilderv2
             {
                 StringPrefixes = new string[] { "!" },
                 EnableMentionPrefix = true,
-                EnableDms = true
             };
 
             Commands = Client.UseCommandsNext(commandConfig);

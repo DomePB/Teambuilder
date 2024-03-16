@@ -17,24 +17,47 @@ namespace Teambuilderv2
         public Form2()
         {
             InitializeComponent();
-            NamedPipeServerStream pipeServer = new NamedPipeServerStream("Pipe1", PipeDirection.In);
-            pipeServer.WaitForConnection();
-
+            TextBox[] Textboxes = { textBox1, Tagline1, textBox2, Tagline2, textBox3, Tagline3, textBox4, Tagline4, textBox5, Tagline5, textBox6, Tagline6, textBox7, Tagline7, textBox8, Tagline8, textBox9, Tagline9, textBox10, Tagline10 };
+           
+           
+            int count = 0;
             try
             {
                 
-                using (StreamReader sr = new StreamReader(pipeServer))
-                {
+               
                     while (true)
                     {
-                        string message = sr.ReadLine();
-                        if (message == null) {
-                            break;
+                    using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("Pipe1", PipeDirection.In))
+                    {
+                        if (!pipeServer.IsConnected)
+                        {
+                            pipeServer.WaitForConnection();
                         }
-                        Console.WriteLine("Received message from Discord bot: " + message);
-                    
+                      
+                        using (StreamReader sr = new StreamReader(pipeServer))
+                        {
+                            string playername = sr.ReadLine();
+                            string tagline = sr.ReadLine();
+                            if (playername != null && tagline != null)
+                            {
+                                Textboxes[count].Text = playername;
+                                count++;
+                                Textboxes[count].Text = tagline;
+                                count++;
+                                Console.WriteLine("Received message from Discord bot: " + playername + tagline);
+
+                            }
+
+                            if (count == 20)
+                            {
+                                pipeServer.Close();
+                                break;
+                            }
+                        }
                     }
-                }
+                   
+                    }
+                
             }
             catch (IOException ex)
             {
@@ -42,7 +65,7 @@ namespace Teambuilderv2
             }
             finally
             {
-                pipeServer.Close();
+               
             }
 
         }
