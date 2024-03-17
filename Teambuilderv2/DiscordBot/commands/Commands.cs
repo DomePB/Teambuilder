@@ -32,12 +32,13 @@ namespace Teambuilderv2.DiscordBot.commands
         [Command("stats")]
 
         public async Task statscmd(CommandContext ctx, params string[] playernamearr) {
-            string playername = string.Join(" ", playernamearr);
+            string input = string.Join(" ", playernamearr);
+            string[] playername = input.Split('#');
             Databaseconnection con = new Databaseconnection();
 
             con.connection();
             SqlDataAdapter testad = new SqlDataAdapter("SELECT TotalWins, TotalLooses FROM Players WHERE PlayerName = @player ", con.cnn);
-            testad.SelectCommand.Parameters.AddWithValue("@player", playername);
+            testad.SelectCommand.Parameters.AddWithValue("@player", playername[0]);
             DataTable Playerstats = new DataTable();
             testad.Fill(Playerstats);
             con.close();
@@ -51,7 +52,7 @@ namespace Teambuilderv2.DiscordBot.commands
                 losses = Convert.ToInt32(Playerstats.Rows[0]["TotalLooses"]);
             }
 
-            await ctx.Channel.SendMessageAsync($"{playername} Wins: {wins}   Defeats: {losses}");
+            await ctx.Channel.SendMessageAsync($"{playername[0]} Wins: {wins}   Defeats: {losses}");
         }
 
         [Command("elo")]
