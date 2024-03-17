@@ -9,6 +9,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tesseract.Interop;
 
 namespace Teambuilderv2.DiscordBot.commands
 {
@@ -53,6 +54,15 @@ namespace Teambuilderv2.DiscordBot.commands
             await ctx.Channel.SendMessageAsync($"{playername} Wins: {wins}   Defeats: {losses}");
         }
 
+        [Command("elo")]
+
+        public async Task elocmd(CommandContext ctx, params string[] playernamearr) {
+            string input = string.Join(" ", playernamearr);
+            string[] playername = input.Split('#');
+            Matchmaking matchmaking = new Matchmaking();
+           double elo = matchmaking.rank(playername[0], playername[1]);
+            await ctx.Channel.SendMessageAsync($"You have : {elo} elo");
+        }
 
         private static void ForwardMessageToProgramm(string Playername, string tagLine) {
             try {
