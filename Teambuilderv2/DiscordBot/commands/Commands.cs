@@ -25,8 +25,15 @@ namespace Teambuilderv2.DiscordBot.commands
         public async Task playcmd(CommandContext ctx, params string[] text) {
             string result = string.Join(" ", text);
             string[] Playername = result.Split('#');
-          await ctx.Channel.SendMessageAsync($"Logged in player: {Playername[0]} {Playername[1]}");
-            ForwardMessageToProgramm(Playername[0], Playername[1]);
+            if (Playername.Length == 2)
+            {
+                await ctx.Channel.SendMessageAsync($"Logged in player: {Playername[0]} {Playername[1]}");
+                ForwardMessageToProgramm(Playername[0], Playername[1]);
+            }
+            else {
+                await ctx.Channel.SendMessageAsync("Wrong Syntax: "+ result);
+            }
+         
         }
 
         [Command("stats")]
@@ -34,35 +41,50 @@ namespace Teambuilderv2.DiscordBot.commands
         public async Task statscmd(CommandContext ctx, params string[] playernamearr) {
             string input = string.Join(" ", playernamearr);
             string[] playername = input.Split('#');
-            Databaseconnection con = new Databaseconnection();
+            if (playername.Length >0)
+            {
+                Databaseconnection con = new Databaseconnection();
 
-            con.connection();
-            SqlDataAdapter testad = new SqlDataAdapter("SELECT TotalWins, TotalLooses FROM Players WHERE PlayerName = @player ", con.cnn);
-            testad.SelectCommand.Parameters.AddWithValue("@player", playername[0]);
-            DataTable Playerstats = new DataTable();
-            testad.Fill(Playerstats);
-            con.close();
+                con.connection();
+                SqlDataAdapter testad = new SqlDataAdapter("SELECT TotalWins, TotalLooses FROM Players WHERE PlayerName = @player ", con.cnn);
+                testad.SelectCommand.Parameters.AddWithValue("@player", playername[0]);
+                DataTable Playerstats = new DataTable();
+                testad.Fill(Playerstats);
+                con.close();
 
-            int wins=0;
-            int losses=0;
+                int wins = 0;
+                int losses = 0;
 
-            if (Playerstats.Rows.Count > 0) {
-                Console.WriteLine("tester 1" + Playerstats.Rows[0]);
-                wins = Convert.ToInt32(Playerstats.Rows[0]["TotalWins"]);
-                losses = Convert.ToInt32(Playerstats.Rows[0]["TotalLooses"]);
+                if (Playerstats.Rows.Count > 0)
+                {
+                    Console.WriteLine("tester 1" + Playerstats.Rows[0]);
+                    wins = Convert.ToInt32(Playerstats.Rows[0]["TotalWins"]);
+                    losses = Convert.ToInt32(Playerstats.Rows[0]["TotalLooses"]);
+                }
+
+                await ctx.Channel.SendMessageAsync($"{playername[0]} Wins: {wins}   Defeats: {losses}");
             }
-
-            await ctx.Channel.SendMessageAsync($"{playername[0]} Wins: {wins}   Defeats: {losses}");
+            else
+            {
+                await ctx.Channel.SendMessageAsync("Wrong stats Syntax: " + input);
+            }
         }
+        
 
         [Command("elo")]
 
         public async Task elocmd(CommandContext ctx, params string[] playernamearr) {
             string input = string.Join(" ", playernamearr);
             string[] playername = input.Split('#');
-            Matchmaking matchmaking = new Matchmaking();
-           double elo = matchmaking.rank(playername[0], playername[1]);
-            await ctx.Channel.SendMessageAsync($"You have : {elo} elo");
+            if (playername.Length == 2)
+            {
+                Matchmaking matchmaking = new Matchmaking();
+                double elo = matchmaking.rank(playername[0], playername[1]);
+                await ctx.Channel.SendMessageAsync($"You have : {elo} elo");
+            }
+            else {
+                await ctx.Channel.SendMessageAsync("Wrong elo Syntax: " + input);
+            }
         }
 
         private static void ForwardMessageToProgramm(string Playername, string tagLine) {
