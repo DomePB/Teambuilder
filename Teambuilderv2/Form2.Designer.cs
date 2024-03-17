@@ -51,6 +51,7 @@
             this.Tagline8 = new System.Windows.Forms.TextBox();
             this.Tagline9 = new System.Windows.Forms.TextBox();
             this.Tagline10 = new System.Windows.Forms.TextBox();
+            this.playercounter = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -266,11 +267,21 @@
             this.Tagline10.TabIndex = 22;
             this.Tagline10.Text = "EUW";
             // 
+            // playercounter
+            // 
+            this.playercounter.AutoSize = true;
+            this.playercounter.Location = new System.Drawing.Point(577, 421);
+            this.playercounter.Name = "playercounter";
+            this.playercounter.Size = new System.Drawing.Size(80, 13);
+            this.playercounter.TabIndex = 23;
+            this.playercounter.Text = "playercount = 0";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 497);
+            this.Controls.Add(this.playercounter);
             this.Controls.Add(this.Tagline10);
             this.Controls.Add(this.Tagline9);
             this.Controls.Add(this.Tagline8);
@@ -326,5 +337,6 @@
         private System.Windows.Forms.TextBox Tagline8;
         private System.Windows.Forms.TextBox Tagline9;
         private System.Windows.Forms.TextBox Tagline10;
+        private System.Windows.Forms.Label playercounter;
     }
 }

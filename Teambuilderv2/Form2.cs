@@ -14,6 +14,7 @@ namespace Teambuilderv2
 {
     public partial class Form2 : Form
     {
+       
         public Form2()
         {
             InitializeComponent();
@@ -81,6 +82,7 @@ namespace Teambuilderv2
 
         private void discordbot_Click(object sender, EventArgs e)
         {
+           
             TextBox[] Textboxes = { textBox1, Tagline1, textBox2, Tagline2, textBox3, Tagline3, textBox4, Tagline4, textBox5, Tagline5, textBox6, Tagline6, textBox7, Tagline7, textBox8, Tagline8, textBox9, Tagline9, textBox10, Tagline10 };
 
             int count = 0;
