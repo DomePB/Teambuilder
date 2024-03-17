@@ -2,6 +2,8 @@
 using DSharpPlus.CommandsNext.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq;
@@ -24,6 +26,31 @@ namespace Teambuilderv2.DiscordBot.commands
             string[] Playername = result.Split('#');
           await ctx.Channel.SendMessageAsync($"Logged in player: {Playername[0]} {Playername[1]}");
             ForwardMessageToProgramm(Playername[0], Playername[1]);
+        }
+
+        [Command("stats")]
+
+        public async Task statscmd(CommandContext ctx, params string[] playernamearr) {
+            string playername = string.Join(" ", playernamearr);
+            Databaseconnection con = new Databaseconnection();
+
+            con.connection();
+            SqlDataAdapter testad = new SqlDataAdapter("SELECT TotalWins, TotalLooses FROM Players WHERE PlayerName = @player ", con.cnn);
+            testad.SelectCommand.Parameters.AddWithValue("@player", playername);
+            DataTable Playerstats = new DataTable();
+            testad.Fill(Playerstats);
+            con.close();
+
+            int wins=0;
+            int losses=0;
+
+            if (Playerstats.Rows.Count > 0) {
+                Console.WriteLine("tester 1" + Playerstats.Rows[0]);
+                wins = Convert.ToInt32(Playerstats.Rows[0]["TotalWins"]);
+                losses = Convert.ToInt32(Playerstats.Rows[0]["TotalLooses"]);
+            }
+
+            await ctx.Channel.SendMessageAsync($"{playername} Wins: {wins}   Defeats: {losses}");
         }
 
 
