@@ -9,9 +9,10 @@ namespace Teambuilderv2
 {
     class League_V4 : RiotApi
     {
-        public List<League> GetLeagueByName(string SummonerId)
+        public List<League> GetLeagueById(string puuid) //string SummonerId
         {
-            string path = "lol/league/v4/entries/by-summoner/" + SummonerId;
+            //string path = "lol/league/v4/entries/by-summoner/" + SummonerId;
+            string path = "lol/league/v4/entries/by-puuid/" + puuid;
 
             var response = GET(GetURL(path));
             string content = response.Content.ReadAsStringAsync().Result;

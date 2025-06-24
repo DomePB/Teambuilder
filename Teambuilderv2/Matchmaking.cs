@@ -56,13 +56,13 @@ namespace Teambuilderv2
             {
                 Account_V1 account = new Account_V1();
                 string puuid = account.GetAccountByFullName(playerName, Tagline).puuid;
-                Summoner_V4 summoner = new Summoner_V4();
-                string id = summoner.GetSummonerByPuuid(puuid).Id;
+               // Summoner_V4 summoner = new Summoner_V4();
+                //string id = summoner.GetSummonerByPuuid(puuid).Id;
 
                 
                 League_V4 league = new League_V4();
                 List<League> leaguelist = new List<League>();
-                leaguelist = league.GetLeagueByName(id);
+                leaguelist = league.GetLeagueById(puuid);
                 string tier = "GOLD";
                 string rank = "IV";
                 int lp = 0;
